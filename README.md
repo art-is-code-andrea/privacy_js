@@ -64,7 +64,13 @@ const myPrivacy = new Privacy({
     }
 });
 ```
+**Option C: CDN Integration** (No installation required)
+Just drop these links into your HTML:
 
+```html
+<link rel="stylesheet" href="[https://cdn.jsdelivr.net/npm/@art_is_code/privacy_js/dist/privacy_js.min.css](https://cdn.jsdelivr.net/npm/@art_is_code/privacy_js/dist/privacy_js.min.css)">
+<script src="[https://cdn.jsdelivr.net/npm/@art_is_code/privacy_js/dist/privacy_js.min.js](https://cdn.jsdelivr.net/npm/@art_is_code/privacy_js/dist/privacy_js.min.js)"></script>
+```
 ## ⚙️ Configuration Options
 You can pass these options to the AIC_Privacy constructor to customize the behavior and appearance of the module.
 | Option | Type | Default | Description |
