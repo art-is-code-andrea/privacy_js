@@ -1,0 +1,38 @@
+{
+  "name": "@art_is_code/privacy_js",
+  "version": "1.0.0",
+  "description": "A lightweight, extensible, and privacy-focused GDPR consent manager.",
+  "main": "dist/privacy_js.min.js",
+  "module": "src/privacy_js.js",
+  "files": [
+    "dist",
+    "src",
+    "scss"
+  ],
+  "scripts": {
+    "build:js": "terser src/privacy_js.js -o dist/privacy_js.min.js --compress --mangle",
+    "build:css": "sass src/sass/privacy_js.scss dist/privacy_js.min.css --style compressed --no-source-map",
+    "build": "npm run build:js && npm run build:css",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "gdpr",
+    "privacy",
+    "consent",
+    "cookie-consent",
+    "cookie-banner",
+    "compliance",
+    "lightweight",
+    "vanilla-js",
+    "art-is-code"
+  ],
+  "author": "Andrea D'Agostino (art is code)",
+  "license": "MIT",
+  "devDependencies": {
+    "terser": "^5.31.0",
+    "sass": "^1.77.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

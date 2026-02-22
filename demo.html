@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo | @art_is_code/privacy_js</title>
+    
+    <link rel="stylesheet" href="dist/privacy_js.css">
+    
+    <style>
+        body { 
+            /* Minimalist technical style */
+            font-family: 'Courier New', Courier, monospace; 
+            padding: 100px 20px; 
+            text-align: center; 
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .content { 
+            background: white; 
+            padding: 40px; 
+            border: 1px solid #ddd; 
+            display: inline-block; 
+            max-width: 600px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 { margin-top: 0; }
+        .btn-settings { 
+            color: #000; 
+            text-decoration: underline; 
+            cursor: pointer; 
+            margin-top: 20px; 
+            display: block; 
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <h1>Privacy_js</h1>
+        <p>A lightweight, extensible, and privacy-focused GDPR consent manager.</p>
+        
+        <p style="font-size: 0.85rem; color: #666;">
+            If the banner doesn't appear, it means you've already made a choice.<br>
+            <strong>To test again:</strong> Clear your cookies or open this page in an incognito window.
+        </p>
+
+        <a href="#" class="my-trigger-preferences btn-settings">
+            Edit your cookie preferences
+        </a>
+    </div>
+
+    <script type="module">
+        import { Privacy } from './src/privacy_js.js';
+
+        const myPrivacy = new Privacy({
+            name: 'ArtIsCode Studio',
+            cookiePrefix: 'AIC_Demo_',
+            cookieDuration: 1, // Reset every day for demo purposes
+            cookieVersion: 1,
+            language: 'en',
+            position: 'bottom',
+            privacyPolicyURL: '/privacy-policy',
+            triggerClass: 'my-trigger-preferences',
+            vendors: [
+                { id: 'analytics', name: 'Google Analytics', description: 'Used to collect anonymous data about how visitors use the site.' },
+                { id: 'marketing', name: 'Facebook Pixel', description: 'Used to track conversions and create custom audiences for ads.' },
+                { id: 'tiktok', name: 'TikTok Tracker', description: 'Optional tracker for social media campaign measurement.' }
+                //...add here other trackers
+            ],
+            translations: {
+                en: {
+                    body: "Welcome to {name}. We use cookies to optimize your experience. <a href='{privacyPolicyURL}'>Learn more</a>",
+                    acceptall: "Accept All",
+                    acceptonlynecessary: "Necessary Only",
+                    linktraceurs: "Customize Settings",
+                    savesettings: "Save & Exit",
+                    necessary_title: "Core Infrastructure",
+                    necessary_desc: "These cookies are strictly necessary to remember your settings and provide basic site functionality."
+                }
+            }
+        });
+
+        // Event listener for consent updates
+        window.addEventListener('artIsPrivacyUpdated', (e) => {
+            console.log("PrivacyJS Event fired!", e.detail);
+            
+            // Example of dynamic tracking activation
+            if (myPrivacy.hasConsent('analytics')) {
+                console.log(">>> Analytics script initialized.");
+            } else {
+                console.log(">>> Analytics script disabled.");
+            }
+        });
+    </script>
+</body>
+</html>
