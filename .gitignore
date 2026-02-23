@@ -6,4 +6,4 @@ node_modules/
 Thumbs.db
 
 # Build files (se userai tool di compilazione in futuro)
-dist/
+#dist/
